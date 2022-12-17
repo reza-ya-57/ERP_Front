@@ -5,15 +5,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './themes/theme';
-
+import { Provider } from 'react-redux';
+import { store } from './app/redux/store';
+import { RTL } from './themes/RTL';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-    <ThemeProvider theme={theme}>
+  <Provider store={store}>
+    <RTL>
+      <ThemeProvider theme={theme}>
         <App />
-    </ThemeProvider>
+      </ThemeProvider>
+    </RTL>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

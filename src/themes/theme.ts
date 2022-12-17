@@ -1,7 +1,7 @@
-import { createTheme } from "@mui/system";
-import { orange } from "@mui/material/colors";
+import { createTheme } from "@mui/material/styles"
+import { orange } from "@mui/material/colors"
 
-declare module '@mui/system' {
+declare module '@mui/material/styles' {
     interface Theme {
       status: {
         danger: string;
@@ -17,6 +17,10 @@ declare module '@mui/system' {
 
 
 export const theme = createTheme({
+    direction: 'rtl',
+    typography: {
+        fontFamily: 'iransans'
+    },
     status: {
       danger: orange[500],
     },
