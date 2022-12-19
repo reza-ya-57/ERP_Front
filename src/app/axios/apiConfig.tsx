@@ -1,10 +1,16 @@
 import axios from "axios"
 
-export const instance = axios.create()
+export const API = axios.create()
 
-instance.defaults.baseURL = 'http://localhost:8000'
-instance.defaults.timeout = 60000
+API.defaults.baseURL = 'http://localhost:8000'
+API.defaults.timeout = 60000
+API.defaults.headers.common['Content-Type'] = 'application/json'
 
+axios.interceptors.request.use(function (config: any) {
+    const token = sessionStorage.getItem('access');
+    config.headers.Authorization = token ? `Bearer ${token}` : ''
+    return config;
+});
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {

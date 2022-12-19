@@ -1,32 +1,25 @@
-import { Button } from '@mui/material'
-import TextField from '@mui/material/TextField'
-import { post } from '../../app/axios/utility/post'
-
-const getToken = async () => {
-    const body = { username: 'reza' , password: 'reza@1618033988'}
-    const data = await post('/token' , body , () => null)
-    console.log(data)
-}
+import { Button , TextField } from '@mui/material'
+import { useAppDispatch } from '../../app/redux/hooks'
+import { getToken } from '../../app/redux/features/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Login() {
-
-
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
   const submitHandler = (e: any) => {
     e.preventDefault()
-    console.log('hello');
-    getToken()
+    console.log(e.target.username.value)
+    dispatch(getToken({ username: e.target.username.value, password: e.target.password.value }))
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <TextField label="نام کاربری" variant="outlined" />
-        <TextField label="رمز ورود" variant="outlined" />
+    <form onSubmit={submitHandler}>
+        <TextField name='username' label="نام کاربری" variant="outlined" />
+        <TextField name='password' label="رمز ورود" variant="outlined" />
         <Button type="submit" variant="contained" color="primary">
           ثبت
         </Button>
-      </form>
-    </div>
+    </form>
   );
 }
