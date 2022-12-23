@@ -21,7 +21,7 @@ const initialState: AuthSlice = {
 }
 
 interface UserCredential {
-    username: string,
+    email: string,
     password: string,
 }
 
@@ -30,7 +30,7 @@ export const getToken = createAsyncThunk(
     'auth/getToken',
     async (userCredential: UserCredential , thunkAPI) => {
         console.log('in the thunk')
-      const response = await post('/user/token/' , userCredential)
+      const response = await post('/api/token/' , userCredential)
       return response
     }
   )

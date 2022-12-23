@@ -1,4 +1,4 @@
-import { API } from "../apiConfig";
+import { API } from "../AxiosInterceptor";
 
 type NavigateFn = () => void
 

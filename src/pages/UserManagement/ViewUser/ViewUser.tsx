@@ -1,7 +1,10 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 
 export default function ViewUser() {
   return (
-    <div>ViewUser</div>
+    <>
+        <div>ViewUser</div>
+        <Link to='/login'>login</Link>
+    </>
   )
 }
