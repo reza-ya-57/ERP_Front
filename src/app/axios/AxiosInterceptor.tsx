@@ -29,7 +29,6 @@ const AxiosInterceptor = ({ children}: any) => {
         }
 
         const errInterceptor = (error: any) => {
-            console.log(error)
             return error
         }
         

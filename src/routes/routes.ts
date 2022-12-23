@@ -9,8 +9,8 @@ const Login = React.lazy(() => import('../pages/Login/Login'))
 export const privateRoutes = [
     { path: 'create-user' , Component: CreateUser },
     { path: 'view-user' , Component: ViewUser },
-    { path: 'login' , Component: Login },
 ]
 
 export const PublicRoutes = [
+    { path: 'login' , Component: Login },
 ]

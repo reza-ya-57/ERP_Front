@@ -3,10 +3,10 @@ import { useAppDispatch } from '../../app/redux/hooks'
 import { getToken } from '../../app/redux/features/authSlice'
 import { Link } from 'react-router-dom'
 import styles from './Login.module.css'
-import { incrementByAmount } from '../../app/redux/features/counterSlice'
 
 export default function Login() {
   const dispatch = useAppDispatch();
+
   const submitHandler = (e: any) => {
     e.preventDefault();
     dispatch(
@@ -16,10 +16,6 @@ export default function Login() {
       })
     );
   };
-
-  const incrementHandler = () => {
-    dispatch(incrementByAmount(5))
-  }
 
   return (
     <form className={styles.form} onSubmit={submitHandler}>
@@ -34,9 +30,6 @@ export default function Login() {
         ثبت
       </Button>
       <Link to="/view-user">view user</Link>
-      <Button onClick={incrementHandler}>
-        increment by 5
-      </Button>
     </form>
   );
 }
