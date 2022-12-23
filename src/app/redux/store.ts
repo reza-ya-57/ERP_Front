@@ -1,14 +1,41 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterSlice from './features/counterSlice'
-import authSlice from './features/authSlice'
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+  } from 'redux-persist'
 
+  import sessionStorage from 'redux-persist/es/storage/session'
+
+
+import rootReducer from './rootReducer'
+
+
+const persistConfig = {
+    key: 'root',
+    version: 1,
+    storage: sessionStorage,
+    blacklist: ['counter']
+}
+
+const persistedReducer = persistReducer(persistConfig , rootReducer)
 
 export const store = configureStore({
-  reducer: {
-    auth: authSlice,
-    counter: counterSlice,
-  },
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: [FLUSH , REHYDRATE , PAUSE , PERSIST , PURGE , REGISTER]
+        }
+    })
 })
+
+export const persistor = persistStore(store)
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

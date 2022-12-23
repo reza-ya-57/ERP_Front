@@ -8,18 +8,22 @@ import { theme } from './themes/theme';
 import { Provider } from 'react-redux';
 import { store } from './app/redux/store';
 import { RTL } from './themes/RTL';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { persistor } from './app/redux/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-    <Provider store={store}>
+  <Provider store={store}>
+    <PersistGate loading={<div>loading...</div>} persistor={persistor}>
       <RTL>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
       </RTL>
-    </Provider>
+    </PersistGate>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
